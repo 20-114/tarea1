@@ -12,11 +12,9 @@ public class UsuariosModel {
     }
 
     public void agregarUsuario(UsuarioDto usuario){
-        this.usuarios = getUsuarios();
         this.usuarios.add(usuario);
     }
     public void eliminarUsuario(UsuarioDto usuario){
-        this.usuarios = getUsuarios();
         this.usuarios.remove(usuario);
     }
 

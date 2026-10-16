@@ -35,8 +35,6 @@ public class UsuariosController {
     private ObservableList<UsuarioDto> usuariosObservable;
     private int contadorId = 0;
 
-
-
     public ArrayList<UsuarioDto> getUsuarios(){
         return this.usuariosModel.getUsuarios();
     }
@@ -46,8 +44,12 @@ public class UsuariosController {
         return contadorId;
     }
 
+    public UsuariosController() {
+        this.usuariosModel = new UsuariosModel();
+    }
+
     @FXML
-    public void inicialize(){
+    public void initialize(){
         /***
          * Se inicializan los valores por defecto de las columnas de la tabla
          */

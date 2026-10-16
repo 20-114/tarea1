@@ -9,4 +9,5 @@ module com.example.tarea1 {
     opens com.example.tarea1.controller to javafx.fxml;
     exports com.example.tarea1;
     exports com.example.tarea1.controller;
+    exports com.example.tarea1.dto;
 }
