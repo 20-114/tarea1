@@ -5,13 +5,12 @@
 
 <VBox alignment="CENTER" prefHeight="545.0" prefWidth="487.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tarea1.controller.UsuariosController">
     <HBox alignment="CENTER">
-        <TextField fx:id="txtId" text="nombre" />
-        <TextField fx:id="txtUsuario" text="nombre" />
-        <TextField fx:id="txtContrasena" text="contrasena" />
+        <TextField fx:id="txtNombre" />
+        <TextField fx:id="txtContrasena" promptText="contrasena" />
         <Button fx:id="btnAgregar" onAction="#handleAgregarUsuario" text="Agregar" />
         <Button fx:id="btnEliminar" onAction="#handleEliminarrUsuario" text="Eliminar" />
     </HBox>
-    <TableView fx:id="tablaUsuarios">
+    <TableView fx:id="tablaUsuarios" onMouseClicked="#handleConseguirElemento">
         <columns>
             <TableColumn fx:id="colId" text="id" />
             <TableColumn fx:id="colNombre" text="nombre" />
