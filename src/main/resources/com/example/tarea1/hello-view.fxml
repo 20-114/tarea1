@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TextField?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.tarea1.controller.UsuariosController">
-    <HBox>
-        <TextField fx:id="txtUsuario" text="nombre"/>
-        <TextField fx:id="txtContrasena" text="contrasena"/>
-        <Button fx:id="btnAgregar" onAction="#handleAgregarUsuario"/>
-        <Button fx:id="btnEliminar" onAction="#handleEliminarrUsuario"/>
+<VBox alignment="CENTER" prefHeight="545.0" prefWidth="487.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tarea1.controller.UsuariosController">
+    <HBox alignment="CENTER">
+        <TextField fx:id="txtId" text="nombre" />
+        <TextField fx:id="txtUsuario" text="nombre" />
+        <TextField fx:id="txtContrasena" text="contrasena" />
+        <Button fx:id="btnAgregar" onAction="#handleAgregarUsuario" text="Agregar" />
+        <Button fx:id="btnEliminar" onAction="#handleEliminarrUsuario" text="Eliminar" />
     </HBox>
-    
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <TableView fx:id="tablaUsuarios">
+        <columns>
+            <TableColumn fx:id="colId" text="id" />
+            <TableColumn fx:id="colNombre" text="nombre" />
+            <TableColumn fx:id="colContrasena" text="contrasena" />
+        </columns>
+    </TableView>
 </VBox>
