@@ -44,18 +44,21 @@ public class UsuariosController {
         return this.usuariosModel.getUsuarios();
     }
 
+
     public int getContadorId(){
+        //suma 1 al contadorId papa hacer que sea autoincremental el id de los usuarios
         this. contadorId = this.contadorId += 1;
         return contadorId;
     }
 
     public UsuariosController() {
-        //
+
         this.usuariosModel = new UsuariosModel();
     }
 
     @FXML
     public void initialize(){
+        //Se ejecuta luego de cargar el archivo .fxml para configurar la tabla y la visualización de la lista
         /***
          * Se inicializan los valores por defecto de las columnas de la tabla
          */
@@ -74,21 +77,50 @@ public class UsuariosController {
     }
 
     public void handleEliminarrUsuario(ActionEvent actionEvent) throws Exception {
+        //Elimina un usuario de la lista
+        /***
+         * Elimina el objeto usuarioEliminar que hace referencia al usuario clickeado de
+         * la tabla desde la función handleConseguirElemento() mediante el metodo eliminarUsuario()
+         * de usuariosModel
+         */
         this.usuariosModel.eliminarUsuario(this.usuarioEliminar);
+        /***
+         *Actualiza la tabla volviendo a cargar la lista de usuarios
+         */
         this.usuariosObservable.setAll(this.usuariosModel.getUsuarios());
+        /***
+         * Limpia el valor de la variable usuarioEliminar
+         */
         this.usuarioEliminar = null;
     }
 
     @FXML
     public void handleConseguirElemento(MouseEvent mouseEvent) {
+        //Consigue la selección de una fila cuando se hace click en la tabla
+        /***
+         * Extrae el objeto seleccionado de la tabla
+         */
         UsuarioDto usuarioDto = (UsuarioDto) this.tablaUsuarios.getSelectionModel().getSelectedItem();
+        /***
+         * Evalua como true cuando la instancia del objeto UsuarioDto no es null
+         */
         if (usuarioDto != null){
+            /***
+             * Consigue el id del usuario seleccionado
+             */
             this.txtId.setText(usuarioDto.getId().toString());
+            /***
+             * Habilita el boton btnEliminar
+             */
             this.btnEliminar.setDisable(false);
+            /***
+             * Guarda la referencia del objeto UsuarioDto en la variable usuarioEliminar
+             */
             this.usuarioEliminar = usuarioDto;
         }
     }
     public void handleAgregarUsuario(ActionEvent actionEvent) throws Exception  {
+        //Adiciona un nuevo elemento (usuario) a la lista cuando btnAgregar es presionado y los TextField no estan vacios
         try {
             UsuarioDto nuevoUsuario = new UsuarioDto();
 
@@ -102,14 +134,21 @@ public class UsuariosController {
             nuevoUsuario.setNombre(txtNombre.getText());
             nuevoUsuario.setContrasena(txtContrasena.getText());
             /***
-             * Reinicializa el valor de los TextField nombre y contrasena
+             * Limpia el valor de los TextField nombre y contrasena
              */
             this.txtNombre.setText("");
             this.txtContrasena.setText("");
-
+            /***
+             * Relocaliza el cursor en el TextField txtNombre
+             */
             this.txtNombre.requestFocus();
-
+            /***
+             * Guarda el objeto "nuevoUsuario" en la lista mediante el metodo agregarUsuario() de usuarioModel
+             */
             this.usuariosModel.agregarUsuario(nuevoUsuario);
+            /***
+             * Actualiza la tabla con el nuevo usuario
+             */
             this.usuariosObservable.add(nuevoUsuario);
         } catch (Exception e){
             printError(e);
@@ -117,10 +156,25 @@ public class UsuariosController {
     }
 
     public void printError(Exception e){
+        /***
+         * Crea una instancia de la ventana de error
+         */
         Alert alert =new Alert(Alert.AlertType.ERROR);
+        /***
+         * Define el texto en la parte superior de la ventana
+         */
         alert.setTitle("Error");
+        /***
+         * Crea un encabezado en la parte superior del Cuero de la ventana
+         */
         alert.setHeaderText("Error");
+        /***
+         * Define el mensaje de error según la Exception controlada
+         */
         alert.setContentText(e.getMessage());
+        /***
+         * Despliega la ventana de error y pausa la aplicación hasta que sea cerrada
+         */
         alert.showAndWait();
     }
 }
