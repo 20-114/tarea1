@@ -26,14 +26,19 @@ public class UsuariosController {
     public Button btnEliminar;
     @FXML
     public TableView tablaUsuarios;
+    @FXML
     public TableColumn colId;
+    @FXML
     public TableColumn colNombre;
+    @FXML
     public TableColumn colContrasena;
+    @FXML
+    public TextField txtId;
 
-    UsuarioDto usuarioDto = new UsuarioDto();
     private UsuariosModel usuariosModel;
     private ObservableList<UsuarioDto> usuariosObservable;
     private int contadorId = 0;
+    UsuarioDto usuarioEliminar;
 
     public ArrayList<UsuarioDto> getUsuarios(){
         return this.usuariosModel.getUsuarios();
@@ -45,6 +50,7 @@ public class UsuariosController {
     }
 
     public UsuariosController() {
+        //
         this.usuariosModel = new UsuariosModel();
     }
 
@@ -67,9 +73,21 @@ public class UsuariosController {
         this.tablaUsuarios.setItems(this.usuariosObservable);
     }
 
-    public void handleEliminarrUsuario(ActionEvent actionEvent) {
+    public void handleEliminarrUsuario(ActionEvent actionEvent) throws Exception {
+        this.usuariosModel.eliminarUsuario(this.usuarioEliminar);
+        this.usuariosObservable.setAll(this.usuariosModel.getUsuarios());
+        this.usuarioEliminar = null;
     }
 
+    @FXML
+    public void handleConseguirElemento(MouseEvent mouseEvent) {
+        UsuarioDto usuarioDto = (UsuarioDto) this.tablaUsuarios.getSelectionModel().getSelectedItem();
+        if (usuarioDto != null){
+            this.txtId.setText(usuarioDto.getId().toString());
+            this.btnEliminar.setDisable(false);
+            this.usuarioEliminar = usuarioDto;
+        }
+    }
     public void handleAgregarUsuario(ActionEvent actionEvent) throws Exception  {
         try {
             UsuarioDto nuevoUsuario = new UsuarioDto();
@@ -92,14 +110,10 @@ public class UsuariosController {
             this.txtNombre.requestFocus();
 
             this.usuariosModel.agregarUsuario(nuevoUsuario);
-            this.usuariosObservable.addAll(this.usuariosModel.getUsuarios());
+            this.usuariosObservable.add(nuevoUsuario);
         } catch (Exception e){
             printError(e);
         }
-    }
-    @FXML
-    public void handleConseguirElemento(MouseEvent mouseEvent) {
-        UsuarioDto usuarioDto = (UsuarioDto) this.tablaUsuarios.getSelectionModel().getSelectedItem();
     }
 
     public void printError(Exception e){

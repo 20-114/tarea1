@@ -3,16 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="545.0" prefWidth="487.0" spacing="20.0"
-      xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.tarea1.controller.UsuariosController">
+<VBox alignment="CENTER" prefHeight="545.0" prefWidth="487.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tarea1.controller.UsuariosController">
 
     <HBox alignment="CENTER" spacing="10">
-        <TextField fx:id="txtNombre" />
-        <TextField fx:id="txtContrasena" promptText="contrasena" />
+        <TextField fx:id="txtId" disable="true" prefHeight="25.0" prefWidth="48.0"  promptText="id"/>
+        <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="114.0" promptText="nombre"/>
+        <TextField fx:id="txtContrasena" prefHeight="25.0" prefWidth="114.0" promptText="contrasena" />
         <Button fx:id="btnAgregar" onAction="#handleAgregarUsuario" text="Agregar" />
-        <Button fx:id="btnEliminar" onAction="#handleEliminarrUsuario" text="Eliminar" />
+        <Button fx:id="btnEliminar" onAction="#handleEliminarrUsuario" text="Eliminar" disable="true"/>
     </HBox>
     <TableView fx:id="tablaUsuarios" onMouseClicked="#handleConseguirElemento">
         <columns>

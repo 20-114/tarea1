@@ -1,14 +1,14 @@
 package com.example.tarea1.dto;
 
 public class UsuarioDto {
-    private int id;
+    private Integer id;
     private String nombre = "";
     private String contrasena = "";
 
     public UsuarioDto() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -34,6 +34,9 @@ public class UsuarioDto {
 
     @Override
     public String toString(){
-        return "";
+        return "UsuarioDto" +
+                "|id: " + id +
+                "|nombre: " + nombre +
+                "|contrasena: " + contrasena;
     }
 }
