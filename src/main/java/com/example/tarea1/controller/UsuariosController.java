@@ -92,6 +92,10 @@ public class UsuariosController {
          * Limpia el valor de la variable usuarioEliminar
          */
         this.usuarioEliminar = null;
+        /***
+         * Habilita el boton btnEliminar
+         */
+        this.btnEliminar.setDisable(true);
     }
 
     @FXML
