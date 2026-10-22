@@ -10,4 +10,5 @@ module com.example.tarea1 {
     exports com.example.tarea1;
     exports com.example.tarea1.controller;
     exports com.example.tarea1.dto;
+    exports com.example.tarea1.dao;
 }

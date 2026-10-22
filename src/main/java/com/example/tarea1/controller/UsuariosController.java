@@ -1,5 +1,6 @@
 package com.example.tarea1.controller;
 
+import com.example.tarea1.dao.UsuariosDao;
 import com.example.tarea1.dto.UsuarioDto;
 import com.example.tarea1.model.UsuariosModel;
 import javafx.beans.Observable;
@@ -12,9 +13,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UsuariosController {
+    @FXML
+    public TextField txtNombre2;
+    @FXML
+    public Button btnAgregarNombre;
+    @FXML
+    public Button btnLeerNombre;
+    @FXML
+    public TextArea txtLeer;
+    private UsuariosDao usuarioDao = new UsuariosDao();
+
 
     @FXML
     public TextField txtNombre;
@@ -181,4 +193,17 @@ public class UsuariosController {
          */
         alert.showAndWait();
     }
+
+    public void handleGuardarNombre(ActionEvent actionEvent) throws IOException {
+        System.out.println("Guardar!");
+        String contenido = this.txtNombre2.getText();
+        this.usuarioDao.guardarNombre(contenido);
+    }
+
+    public void handleLeerNombre(ActionEvent actionEvent) {
+        System.out.println("Mostrar!");
+        String contenido = usuarioDao.leerNombre();
+        this.txtLeer.setText(contenido);
+    }
+
 }
